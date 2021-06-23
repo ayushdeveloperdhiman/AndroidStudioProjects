@@ -1,0 +1,2 @@
+rootProject.name = "Supporting different pixel densities"
+include ':app'

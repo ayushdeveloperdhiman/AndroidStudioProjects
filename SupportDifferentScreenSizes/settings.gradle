@@ -1,0 +1,2 @@
+rootProject.name = "Support Different Screen Sizes"
+include ':app'
