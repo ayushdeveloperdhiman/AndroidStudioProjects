@@ -3,9 +3,11 @@ package com.ayush.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -152,12 +154,10 @@ public class MainActivity extends AppCompatActivity {
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (btnACcontrol) {
                     textViewResult.setText("0");
                 } else {
                     number = number.substring(0, number.length() - 1);
-
                     if (number.length() == 0) {
                         btnDel.setClickable(false);
                     } else if (number.contains(".")) {
@@ -176,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(textViewResult.getText().toString().equals("0")||textViewResult.getText().toString().equals("")){
+                    return;
+                }
 
                 history = textViewHistory.getText().toString();
                 currentResult = textViewResult.getText().toString();
@@ -203,6 +206,9 @@ public class MainActivity extends AppCompatActivity {
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(textViewResult.getText().toString().equals("0")||textViewResult.getText().toString().equals("")){
+                    return;
+                }
 
                 history = textViewHistory.getText().toString();
                 currentResult = textViewResult.getText().toString();
@@ -230,6 +236,9 @@ public class MainActivity extends AppCompatActivity {
         btnMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(textViewResult.getText().toString().equals("0")||textViewResult.getText().toString().equals("")){
+                    return;
+                }
 
                 history = textViewHistory.getText().toString();
                 currentResult = textViewResult.getText().toString();
@@ -258,22 +267,25 @@ public class MainActivity extends AppCompatActivity {
         btnDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(textViewResult.getText().toString().equals("0")||textViewResult.getText().toString().equals("")){
+                    return;
+                }
 
                 history = textViewHistory.getText().toString();
                 currentResult = textViewResult.getText().toString();
                 textViewHistory.setText(history + currentResult + "/");
+                    if (operator) {
+                        if (status == "multiplacition") {
+                            multiply();
+                        } else if (status == "sum") {
+                            plus();
+                        } else if (status == "subtraction") {
+                            minus();
+                        } else {
+                            divide();
+                        }
 
-                if (operator) {
-                    if (status == "multiplacition") {
-                        multiply();
-                    } else if (status == "sum") {
-                        plus();
-                    } else if (status == "subtraction") {
-                        minus();
-                    } else {
-                        divide();
                     }
-                }
 
                 status = "division";
                 operator = false;
@@ -285,6 +297,9 @@ public class MainActivity extends AppCompatActivity {
         btnEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(textViewResult.getText().toString().equals("0")||textViewResult.getText().toString().equals("")){
+                    return;
+                }
 
                 if (operator) {
                     if (status == "sum") {
@@ -380,15 +395,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void divide() {
-        if (firstNumber == 0) {
-            lastNumber = Double.parseDouble(textViewResult.getText().toString());
-            firstNumber = lastNumber / 1;
-        } else {
-            lastNumber = Double.parseDouble(textViewResult.getText().toString());
-            firstNumber = firstNumber / lastNumber;
+            if (firstNumber == 0) {
+                lastNumber = Double.parseDouble(textViewResult.getText().toString());
+                firstNumber = lastNumber / 1;
+            } else {
+                lastNumber = Double.parseDouble(textViewResult.getText().toString());
+                firstNumber = firstNumber / lastNumber;
+            }
+
+            textViewResult.setText(myFormatter.format(firstNumber));
+            dot = true;
         }
 
-        textViewResult.setText(myFormatter.format(firstNumber));
-        dot = true;
-    }
 }
