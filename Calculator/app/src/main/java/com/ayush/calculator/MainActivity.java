@@ -154,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(number==null){
+                    return;
+                }
                 if (btnACcontrol) {
                     textViewResult.setText("0");
                 } else {
