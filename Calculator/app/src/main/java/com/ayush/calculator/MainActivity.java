@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     double firstNumber = 0;
     double lastNumber = 0;
-
+    boolean eqlBtnClick=false;
     String status = null;
     boolean operator = false;
 
@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("1");
             }
         });
@@ -82,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("2");
             }
         });
@@ -89,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("3");
             }
         });
@@ -96,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("4");
             }
         });
@@ -103,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("5");
             }
         });
@@ -110,6 +130,10 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("6");
             }
         });
@@ -117,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("7");
             }
         });
@@ -124,6 +152,10 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("8");
             }
         });
@@ -131,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("9");
             }
         });
@@ -183,11 +219,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                history = textViewHistory.getText().toString();
-                currentResult = textViewResult.getText().toString();
-                textViewHistory.setText(history + currentResult + "+");
+
 
                 if (operator) {
+                    history = textViewHistory.getText().toString();
+                    currentResult = textViewResult.getText().toString();
+                    textViewHistory.setText(history + currentResult + "+");
                     if (status == "multiplacition") {
                         multiply();
                     } else if (status == "division") {
@@ -213,11 +250,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                history = textViewHistory.getText().toString();
-                currentResult = textViewResult.getText().toString();
-                textViewHistory.setText(history + currentResult + "-");
+
 
                 if (operator) {
+                    history = textViewHistory.getText().toString();
+                    currentResult = textViewResult.getText().toString();
+                    textViewHistory.setText(history + currentResult + "-");
                     if (status == "multiplacition") {
                         multiply();
                     } else if (status == "division") {
@@ -243,11 +281,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                history = textViewHistory.getText().toString();
-                currentResult = textViewResult.getText().toString();
-                textViewHistory.setText(history + currentResult + "*");
 
                 if (operator) {
+                    history = textViewHistory.getText().toString();
+                    currentResult = textViewResult.getText().toString();
+                    textViewHistory.setText(history + currentResult + "*");
+
                     if (status == "sum") {
                         plus();
                     } else if (status == "division") {
@@ -274,10 +313,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                history = textViewHistory.getText().toString();
-                currentResult = textViewResult.getText().toString();
-                textViewHistory.setText(history + currentResult + "/");
+
                     if (operator) {
+                        history = textViewHistory.getText().toString();
+                        currentResult = textViewResult.getText().toString();
+                        textViewHistory.setText(history + currentResult + "/");
                         if (status == "multiplacition") {
                             multiply();
                         } else if (status == "sum") {
@@ -305,14 +345,23 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (operator) {
+                    eqlBtnClick=true;
                     if (status == "sum") {
                         plus();
+                        textViewHistory.setText(textViewResult.getText().toString());
+                        textViewResult.setText("");
                     } else if (status == "subtraction") {
                         minus();
+                        textViewHistory.setText(textViewResult.getText().toString());
+                        textViewResult.setText("");
                     } else if (status == "multiplacition") {
                         multiply();
+                        textViewHistory.setText(textViewResult.getText().toString());
+                        textViewResult.setText("");
                     } else if (status == "division") {
                         divide();
+                        textViewHistory.setText(textViewResult.getText().toString());
+                        textViewResult.setText("");
                     } else {
                         firstNumber = Double.parseDouble(textViewResult.getText().toString());
                     }

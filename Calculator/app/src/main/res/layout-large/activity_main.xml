@@ -27,7 +27,7 @@
             android:layout_height="280dp"
             android:background="@color/white"
             android:gravity="center|end"
-            android:text="0"
+            android:hint="0"
             android:textColor="@color/black"
             android:textSize="60sp" />
 

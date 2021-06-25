@@ -19,15 +19,16 @@
             android:gravity="center|end"
             android:background="@color/white"
             android:textColor="@color/black"/>
+
         <TextView
+            android:id="@+id/textViewResult"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:textSize="60sp"
-            android:id="@+id/textViewResult"
-            android:gravity="center|end"
             android:background="@color/white"
+            android:gravity="center|end"
+            android:hint="0"
             android:textColor="@color/black"
-            android:text="0"/>
+            android:textSize="60sp" />
 
     </LinearLayout>
     <GridLayout
