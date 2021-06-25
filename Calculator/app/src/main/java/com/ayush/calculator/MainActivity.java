@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
                 number = null;
                 status = null;
-                textViewResult.setText("0");
+                textViewResult.setText("");
                 textViewHistory.setText("");
                 firstNumber = 0;
                 lastNumber = 0;
