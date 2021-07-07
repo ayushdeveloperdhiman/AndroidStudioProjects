@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Bio</string>
+    <string name="name">Ayush Dhiman</string>
+    <string name="bio">Hi, I am Ayush Dhiman from Himachal Pradesh, pursuing B.Tech from Rayat
+    Bahra University,Mohali and currently in 7th semester.\n\nI am 21 years old and learning to build my own android applications
+        and this Bio application is my one of the project.In this application i just created a image view,textview inside
+    a linear layout.To build my own application I make use of java programming.</string>
+    <string name="hobby_hint_text">Enter your hobbies?</string>
+    <string name="done_text">done</string>
+    <string name="image_description">Profile pic</string>
+    <string name="auto_fill_hints">classical guitar</string>
+</resources>
