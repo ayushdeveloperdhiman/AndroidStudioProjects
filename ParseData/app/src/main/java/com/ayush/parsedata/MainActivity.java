@@ -28,17 +28,7 @@ String apiUrl="https://jsonplaceholder.typicode.com/todos";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         queue= Volley.newRequestQueue(this);
-        JsonArrayRequest jsonObjectRequest=new JsonArrayRequest(Request.Method.GET, apiUrl, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.d("JSON",response.toString().substring(0,500));
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("JSON","Failed");
-            }
-        });
+        JsonArrayRequest jsonObjectRequest=new JsonArrayRequest(Request.Method.GET, apiUrl, null, response -> Log.d("JSON",response.toString().substring(0,500)), error -> Log.d("JSON","Failed"));
         queue.add(jsonObjectRequest);
         getString(queue);
     }
