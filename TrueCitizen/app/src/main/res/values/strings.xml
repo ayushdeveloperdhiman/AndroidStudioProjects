@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">True Citizen</string>
+    <string name="true_button_text">true</string>
+    <string name="false_button_text">false</string>
+    <string name="correct_answer">That\'s correct</string>
+    <string name="wrong_answer">That\'s incorrect</string>
+    <string name="question_noble_prize">Amartya Sen was awarded the Nobel prize for his contribution to Welfare Economics.</string>
+    <string name="question_headquarters">The Headquarters of the Southern Naval Command of the India Navy is located at Thiruvananthapuram.</string>
+    <string name="question_sachin_tendulkar">Sachin Tendulkar has not played a single International T20 match for India.</string>
+    <string name="question_seasons">There are 4 sessions of the Parliament each year: Spring, Summer, Autumn and Winter.</string>
+    <string name="question_roop_singh_stadium">The Captain Roop Singh stadium is named after a former Indian cricketer.</string>
+    <string name="question_mahabharata">The Mahabharata is a part of The Bhagavad Gita.</string>
+</resources>

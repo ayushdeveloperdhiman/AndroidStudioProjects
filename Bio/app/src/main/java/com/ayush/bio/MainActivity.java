@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
         bio.setName("Ayush Dhiman");
-        binding.setBio(bio);
+        binding.setBioInfo(bio);
         binding.doneButton.setOnClickListener(view -> {
             if(!binding.enterHobbies.getText().toString().isEmpty()){
                 bio.setHobbies(String.format("Hobbies: %s", binding.enterHobbies.getText().toString()));
-                binding.setBio(bio);
+                binding.setBioInfo(bio);
                 binding.textviewHobbies.setVisibility(View.VISIBLE);
                 binding.invalidateAll();
                 //hide keyboard

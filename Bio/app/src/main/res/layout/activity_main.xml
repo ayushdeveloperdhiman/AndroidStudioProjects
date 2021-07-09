@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="bio"
+            name="bioInfo"
             type="com.ayush.bio.data.Bio" />
     </data>
     <androidx.appcompat.widget.LinearLayoutCompat
