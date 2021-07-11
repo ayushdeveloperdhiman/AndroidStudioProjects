@@ -5,7 +5,8 @@
     <string name="true_button">true</string>
     <string name="false_button">false</string>
     <string name="next_button" >next</string>
-    <string name="placeHolder">Hello world this is where we are going to add the actual text to be shown!</string>
     <string name="correct_answer">correct</string>
     <string name="wrong_answer">wrong</string>
+    <string name="high_score_txt">High Score: 0</string>
+    <string name="current_score_txt">Current Score: 0</string>
 </resources>

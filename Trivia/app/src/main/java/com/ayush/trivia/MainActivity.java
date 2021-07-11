@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,14 +25,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String MESSAGE_ID = "Data";
     private ActivityMainBinding binding;
     private int currentCounter=0;
     private List<Question> questionList;
+    private int currentScore=0,highScore=0;
+    boolean checkControl=false;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        checkControl=true;
         super.onCreate(savedInstanceState);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+        retrieveData();
         questionList=new Repository().getQuestions(new AnswerListAsyncResponse() {
             @Override
             public void processFinished(ArrayList<Question> questions) {
@@ -41,36 +48,61 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(currentCounter<questionList.size()){
-                    currentCounter++;
+                if (checkControl == false) {
+                    if (currentCounter < questionList.size()) {
+                        currentCounter++;
+                    }
+                    checkControl = true;
+                    updateQuestion();
+                }else{
+                    Snackbar.make(binding.cardView,"Give answer first!",Snackbar.LENGTH_SHORT).show();
+
                 }
-                updateQuestion();
             }
         });
         binding.buttonTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer(true);
+                if (checkControl==true) {
+                    checkAnswer(true);
+                    checkControl=false;
+                }else{
+                    Snackbar.make(binding.cardView,"Answer already given! Please click on next",Snackbar.LENGTH_SHORT).show();
+
+                }
             }
         });
         binding.buttonFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkAnswer(false);
+                if(checkControl==true){
+                    checkAnswer(false);
+                    checkControl=false;
+                }else{
+                    Snackbar.make(binding.cardView,"Answer already given! Please click on next",Snackbar.LENGTH_SHORT).show();
+                }
+
             }
         });
 
     }
 
+    @SuppressLint("DefaultLocale")
     private void checkAnswer(boolean userChoice) {
         int snackMessageId=0;
         if (userChoice==questionList.get(currentCounter).getAnswerTrue()){
+            currentScore +=10;
             fadeAnimation();
+            checkScore();
             snackMessageId=R.string.correct_answer;
         }else{
+            if(currentScore>0) {
+                currentScore -= 5;
+            }
             shakeAnimation();
             snackMessageId=R.string.wrong_answer;
         }
+        binding.currentScoreText.setText(String.format("Current Score: %d", currentScore));
         Snackbar.make(binding.cardView,snackMessageId,Snackbar.LENGTH_SHORT).show();
     }
 
@@ -126,5 +158,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @SuppressLint("DefaultLocale")
+    private void checkScore(){
+        if(currentScore>highScore){
+            highScore=currentScore;
+            binding.highScoreText.setText(String.format("High Score: %d",highScore));
+        }
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sharedPreferences=getSharedPreferences(MESSAGE_ID,MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putInt("High score",highScore);
+        editor.apply();
+    }
+    private void retrieveData(){
+        sharedPreferences=getSharedPreferences(MESSAGE_ID,MODE_PRIVATE);
+        highScore=sharedPreferences.getInt("High score",0);
+        binding.highScoreText.setText("High Score: "+highScore);
+    }
 }
