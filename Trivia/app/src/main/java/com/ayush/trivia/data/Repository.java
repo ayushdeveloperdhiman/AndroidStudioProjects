@@ -27,7 +27,6 @@ public class Repository {
                     try {
                         Question question=new Question(response.getJSONArray(i).get(0).toString(),response.getJSONArray(i).getBoolean(1));
                         questionArrayList.add(question);
-                        Log.d("Hello",""+questionArrayList);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
