@@ -3,10 +3,8 @@ package com.ayush.contactmanager.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.util.Log;
 
 import com.ayush.contactmanager.R;
@@ -17,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
+
 
     public DatabaseHandler(Context context) {
         super(context, Util.DATABASE_NAME, null, Util.DATABASE_VERSION);
