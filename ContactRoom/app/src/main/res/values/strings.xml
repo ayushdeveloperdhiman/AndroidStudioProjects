@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ContactRoom</string>
+    <string name="description_txt">Plus button</string>
 </resources>
