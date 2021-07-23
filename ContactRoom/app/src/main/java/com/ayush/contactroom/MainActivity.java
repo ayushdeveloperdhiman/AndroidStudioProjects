@@ -1,19 +1,17 @@
 package com.ayush.contactroom;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 
 import com.ayush.contactroom.adapter.RecyclerViewAdapter;
 import com.ayush.contactroom.model.Contact;
@@ -21,13 +19,15 @@ import com.ayush.contactroom.model.ContactViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnContactClickListener {
     private static final int NEW_ACTIVITY_REQUEST_CODE = 1;
+    private static final String TAG ="Clicked" ;
     private ContactViewModel viewModel;
+    public static final String CONTACT_ID="contact_id";
     private FloatingActionButton add;
     private RecyclerViewAdapter adapter;
-    private LiveData<List<Contact>> contactList;
     private RecyclerView recyclerView;
 
     @Override
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 .create(ContactViewModel.class);
 
         viewModel.getAllContacts().observe(this, contacts -> {
-            adapter=new RecyclerViewAdapter(this,contacts);
+            adapter=new RecyclerViewAdapter(this,contacts,this);
             recyclerView.setAdapter(adapter);
                 });
 
@@ -66,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
             Contact contact = new Contact(data.getStringExtra(NewContact.NAME_REPLY), data.getStringExtra(NewContact.OCCUPATION_REPLY));
             ContactViewModel.insert(contact);
         }
+    }
+
+    @Override
+    public void onContactClick(int position) {
+        Contact contact= Objects.requireNonNull(viewModel.liveData.getValue()).get(position);
+        Intent intent=new Intent(MainActivity.this,NewContact.class);
+        intent.putExtra(CONTACT_ID,contact.getId());
+        startActivity(intent);
     }
 }
