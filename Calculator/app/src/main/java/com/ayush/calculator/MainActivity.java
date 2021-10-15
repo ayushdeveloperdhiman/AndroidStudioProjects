@@ -1,13 +1,13 @@
 package com.ayush.calculator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnAC, btnDel, btnPlus, btnMinus, btnDivide, btnMulti, btnEquals, btnDot;
 
     private TextView textViewResult, textViewHistory;
-
     private String number = null;
 
     double firstNumber = 0;
@@ -68,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(eqlBtnClick){
+                    textViewHistory.setText("");
+                    eqlBtnClick=false;
+                }
                 numberClick("0");
             }
         });
@@ -459,4 +462,21 @@ public class MainActivity extends AppCompatActivity {
             dot = true;
         }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+        alertDialog.setTitle("Exit").setMessage("Are you sure to quit?")
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                }).setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        }).show();
+        alertDialog.create();
+    }
 }
