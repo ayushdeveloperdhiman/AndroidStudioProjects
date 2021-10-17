@@ -7,33 +7,13 @@
     android:background="#1A9C82"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+    <include
+        android:id="@+id/include"
+        layout="@layout/appbar"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageFemale"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:clickable="true"
-            app:srcCompat="@drawable/female2"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <ImageView
-            android:id="@+id/imageMale"
-            android:layout_width="101dp"
-            android:layout_height="100dp"
-            android:clickable="true"
-            app:srcCompat="@drawable/male2"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -57,10 +37,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintTop_toTopOf="@+id/include"
+        app:layout_constraintVertical_bias="0.363" />
 
     <EditText
         android:id="@+id/editTextHeight"
@@ -118,6 +97,7 @@
         android:id="@+id/buttonCalculate"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:background="?android:attr/textSelectHandleLeft"
         android:backgroundTint="#2C579A"
         android:text="CalCulate"
         app:layout_constraintBottom_toBottomOf="parent"

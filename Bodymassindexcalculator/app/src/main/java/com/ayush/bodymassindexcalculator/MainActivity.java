@@ -2,21 +2,25 @@ package com.ayush.bodymassindexcalculator;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 EditText height,weight;
 Button calculate;
 String result;
+Toolbar toolBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,8 @@ String result;
         calculate=findViewById(R.id.buttonCalculate);
         height=findViewById(R.id.editTextHeight);
         weight=findViewById(R.id.editTextWeight);
+        toolBar=findViewById(R.id.myToolbar);
+        setSupportActionBar(toolBar);
         calculate.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("DefaultLocale")
             @Override
@@ -42,7 +48,8 @@ String result;
                     AlertDialog.Builder alertDialog=new AlertDialog.Builder(MainActivity.this,R.style.AlertDialogStyle);
                     alertDialog.setTitle("BMI").setMessage("BMI = "+bmi+" Kg/m2.\n"+result)
                             .setIcon(R.drawable.bmi)
-                            .setCancelable(true).show();
+                            .setPositiveButtonIcon(getDrawable(android.R.drawable.ic_delete))
+                            .setCancelable(false).show();
                     alertDialog.create();
                 }else{
                     Toast.makeText(getApplicationContext(),"Enter all fields",Toast.LENGTH_SHORT).show();
