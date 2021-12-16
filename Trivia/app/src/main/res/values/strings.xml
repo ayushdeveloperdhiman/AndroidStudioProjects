@@ -4,7 +4,7 @@
     <string name="out_of_text">Question: 45/89</string>
     <string name="true_button">true</string>
     <string name="false_button">false</string>
-    <string name="next_button" >next</string>
+    <string name="next_button">next</string>
     <string name="correct_answer">correct</string>
     <string name="wrong_answer">wrong</string>
     <string name="high_score_txt">High Score: 0</string>

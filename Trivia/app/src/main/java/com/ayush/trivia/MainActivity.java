@@ -60,18 +60,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        binding.buttonTrue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (checkControl==true) {
-                    checkAnswer(true);
-                    checkControl=false;
-                }else{
-                    Snackbar.make(binding.cardView,"Answer already given! Please click on next",Snackbar.LENGTH_SHORT).show();
+            binding.buttonTrue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (checkControl==true) {
+                        checkAnswer(true);
+                        checkControl=false;
+                    }else{
+                        Snackbar.make(binding.cardView,"Answer already given! Please click on next",Snackbar.LENGTH_SHORT).show();
 
+                    }
                 }
-            }
-        });
+            });
+
+
         binding.buttonFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
